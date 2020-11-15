@@ -11,20 +11,31 @@ class Command
         $this->args = $arrayArg;
     }
 
+    /**
+     * @return float|int
+     */
     private function add() {
         return array_sum($this->args);
     }
 
+    /**
+     * @return array
+     */
     private function sortAsc() {
         sort($this->args);
         return $this->args;
     }
 
-
+    /**
+     * @return mixed|string
+     */
     private function repoDesc() {
         return $this->get_content_from_github();
     }
 
+    /**
+     * @return mixed|string
+     */
     public function get_content_from_github() {
         $options = array(
             CURLOPT_RETURNTRANSFER => true,     // return web page

@@ -34,8 +34,8 @@ class repoDescCommand implements iCommand
         curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,1);
         $content = json_decode(curl_exec($ch), true);
         curl_close($ch);
-        if (!$content['description'])
-            return ("Not description found on this repo");
+        if (!in_array('description', $content))
+            return ("Repo not found");
         else
             return $content['description'];
     }

@@ -1,36 +1,13 @@
 <?php
 
 
-class Command
+class repoDescCommand implements iCommand
 {
-    public $command;
     public $args = [];
 
-    function __construct($command, $arrayArg) {
-        $this->command = $command;
+    function __construct($arrayArg)
+    {
         $this->args = $arrayArg;
-    }
-
-    /**
-     * @return float|int
-     */
-    private function add() {
-        return array_sum($this->args);
-    }
-
-    /**
-     * @return array
-     */
-    private function sortAsc() {
-        sort($this->args);
-        return $this->args;
-    }
-
-    /**
-     * @return mixed|string
-     */
-    private function repoDesc() {
-        return $this->get_content_from_github();
     }
 
     /**
@@ -64,19 +41,10 @@ class Command
     }
 
     /**
-     * @return array|float|int|mixed|string
-     * Execute the command
+     * @return float|int
      */
-    public function execute() {
-        switch ($this->command) {
-            case 'add':
-                return $this->add();
-            case 'sort-asc':
-                return $this->sortAsc();
-            case 'repo-desc':
-                return $this->repoDesc();
-            default:
-                return 'This command is not recognized';
-        }
+    public function executeCommand()
+    {
+        return $this->get_content_from_github();
     }
 }
